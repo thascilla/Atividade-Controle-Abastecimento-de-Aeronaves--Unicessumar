@@ -1,0 +1,62 @@
+Algoritmo "Controleabastecimentodeaeronaves"
+
+
+Var
+
+   capLMaxima, capcidadeKm, quantKmPlanejada, quantkmAlternativo, quantLCombustivel, abastecer: real
+   total, consumoMedio, margemseg,combustivelNecessario, consumoMedioVooPlanjedo, previsao :real
+
+
+Inicio
+
+   escreval("Digite a média da aeronave em litros por quilômetros: ")
+   leia(consumoMedio)
+   escreval("Digite a capacidade maxima em litros da aeronave: ")
+   leia(capLMaxima)
+
+   escreval("Digite a quantidade de combustível que ja esta aeronave: ")
+   leia(quantLCombustivel)
+   escreval("Digite a quilometragem do trecho planejado: ")
+   leia(quantKmPlanejada)
+   escreval("Digite a quilometragem do trecho alternativo: ")
+   leia(quantKmAlternativo)
+
+   total <-  quantKmPlanejada + quantKmAlternativo
+   margemseg <-  total * 30/100
+   previsao <-  total + margemseg
+   combustivelNecessario <- consumoMedio * previsao
+   abastecer <- combustivelNecessario - quantLCombustivel
+   consumoMedioVooPlanjedo <- combustivelNecessario / previsao
+   capcidadeKm <- consumoMedio / capLMaxima
+
+
+   Se(combustivelNecessario <= capLMaxima) então
+
+      Escreval("Voo aprovado, bom voo!")
+      Escreval("Previsão da quilometragem total com margem de segurança é: ", previsao)
+      Escreval("A quilometragem da rota principal é: ",quantKmPlanejada)
+      Escreval("A quilometragem da rota alternativa é:",quantKmAlternativo)
+      Escreval(" Margem de segurança: ",margemseg)
+      Escreval("Quantidade combustivel nescessaria para o trecho Total é: ", combustivelNecessario)
+      Escreval("O consumo medio do seu voo será de: ", consumoMedioVooPlanjedo)
+      Escreval("A aeronave já possui ", quantLCombustivel, "L no tanque")
+
+      Se (abastecer >=0) então
+         Escreval( "!!! Abastecer com ", abastecer , " litros e depois voar.")
+      fim_se
+
+   Senão
+
+      Escreval("Voo reprovado, reveja seu planejamento.")
+      Escreval("Previsão da quilometragem total com margem de segurança é: ", previsao)
+      Escreval("A quilometragem da rota principal é: ",quantKmPlanejada)
+      Escreval("A quilometragem da rota alternativa é:",quantKmAlternativo)
+      Escreval(" Margem de segurança: ",margemseg)
+      Escreval("Quantidade combustivel nescessaria para o trecho é ", combustivelNecessario)
+      Escreval("O consumo medio do seu voo será de: ", consumoMedioVooPlanjedo)
+
+
+   Fim_se
+
+
+Fimalgoritmo
